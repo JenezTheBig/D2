@@ -32,18 +32,16 @@
 **Java**
 
 ```java
-private List<E> dados;
-
-public DAO() {
-    dados = new ArrayList<>();
-}
+    for (ItemVenda i : itens) {
+        t += i.getValor() * i.getQtd();
+    }
 ```
+-   A tipagem é sempre explícita, então é necessário escrever ItemVenda i para declarar o tipo do elemento dentro do loop. <br>
+<br>
 
-**Dart**
-[Dart -> DAO](lib/data/dao.dart)
-- Compilador de Dart infere automaticamente que _dados é uma List\<E>;
-- Não há necessidade de \<E> após [ ], pois Dart deduz isso com base no tipo da variável;
-- O getter dados retorna _dados, e Dart mantém o tipo inferido automaticamente;
+**Dart** <br>
+[Dart -> DAO](lib/entidades/venda.dart)
+<br>
 
 ---
 ### **Null Safety (?, ??, ??=)**
@@ -61,8 +59,9 @@ public Produto buscar(String nome) {
     return null;
 }
 ```
-**Dart**
+**Dart** <br>
 [Dart -> DAO_PROTUDO](/lib/data/dao_produto.dart)
+<br>
 
 ---
 ### **Funções Anônimas (=>)**
@@ -76,7 +75,7 @@ public Produto buscar(String nome) {
     });
 ```
 
-**Dart** [Dart -> DAO](/lib/data/dao.dart)
+**Dart** <br>[Dart -> DAO](/lib/data/dao.dart)
 
 ---
 ### **Tratamento de Exceções (try-catch)**
@@ -110,7 +109,7 @@ public Produto buscar(String nome) {
 ```
 
 
-**Dart** [Dart -> MENU_VENDA](/lib/ui/menu_venda.dart)
+**Dart**<br> [Dart -> MENU_VENDA](/lib/ui/menu_venda.dart)
 
 ---
 ### **Iteração sobre Coleções (for-in e forEach)**
@@ -132,7 +131,7 @@ public Produto buscar(String nome) {
     }
 ```
 
-**Dart** [Dart -> VENDA](/lib/entidades/venda.dart)
+**Dart**<br> [Dart -> VENDA](/lib/entidades/venda.dart)
 
 ### **For-each**
 
@@ -320,7 +319,7 @@ O Dart utiliza um Coletor de Lixo baseado em rastreamento `(Tracing Garbage Coll
 
 3- Tracing GC (Técnica de Rastreamento)
 
-    - Baseado no Marcar e Varrer, onde objetos ão marcados e removidos da memória.
+    - Baseado no Marcar e Varrer, onde objetos são marcados e removidos da memória.
 
 4- Coleta Automática:
 
