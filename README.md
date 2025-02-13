@@ -40,14 +40,14 @@
 <br>
 
 **Dart** <br>
-[Dart -> DAO](lib/entidades/venda.dart)
+[Dart -> VENDA](lib/entidades/venda.dart)
 <br>
 
 ---
 ### **Null Safety (?, ??, ??=)**
 - A linguagem possui suporte nativo para null safety, evitando erros de acesso a valores null.
--Java, por outro lado, pode lançar **NullPointerException** se tentarmos acessar um objeto **null**.
-
+-Java, por outro lado, pode lançar **NullPointerException** se tentarmos acessar um objeto **null**. <br>
+### **?**<br>
 **Java**
 ```java
 public Produto buscar(String nome) {
@@ -63,6 +63,71 @@ public Produto buscar(String nome) {
 [Dart -> DAO_PROTUDO](/lib/data/dao_produto.dart)
 <br>
 
+### **??**<br>
+
+- Retorna o primeiro valor não nulo entre duas expressões.
+**Dart**
+
+```dart
+    void main() {
+    int? a;
+    int b = a ?? 10; // Se 'a' for null, usa 10
+    print(b); // Saída: 10
+    }
+```
+
+### **??=**<br>
+
+- O operador ??= atribui um valor somente se a variável for null.
+
+```dart
+    void main() {
+    int? numero;
+    numero ??= 5; // Apenas atribui se for null
+    print(numero); // Saída: 5
+
+    numero ??= 10; // Não será atribuído, pois já tem um valor
+    print(numero); // Saída: 5
+    }
+```
+---
+### **Operadores Spread (...) e Cascata (..)**
+
+### **spread(...)**<br>
+- O operador spread (...) é usado para expandir elementos de uma coleção (como listas, conjuntos e mapas) dentro de outra coleção.
+**Java**
+```dart
+void main() {
+  var lista1 = [1, 2, 3];
+  var lista2 = [0, ...lista1, 4, 5];
+
+  print(lista2); // [0, 1, 2, 3, 4, 5]
+}
+```
+
+### **cascata(..)**<br>
+- O operador de cascata (..) permite encadear chamadas de métodos e atribuições a um objeto sem precisar armazená-lo em uma variável intermediária.<br>
+**Exemplo sem o operador**<br>
+```dart
+    void main() {
+    var buffer = StringBuffer();
+    buffer.write('Olá');
+    buffer.write(' Mundo!');
+
+    print(buffer.toString()); // "Olá Mundo!"
+}
+
+```
+**Exemplo com o operador**<br>
+```dart
+    void main() {
+    var buffer = StringBuffer()
+        ..write('Olá')
+        ..write(' Mundo!');
+
+    print(buffer.toString()); // "Olá Mundo!"
+    }
+```
 ---
 ### **Funções Anônimas (=>)**
 - Dart Permite definir **Funções Anônimas** e **Funções de Seta (=>)** , que simplificam expressões de uma única linha. Em Java, lambda são usados para isso.
@@ -221,15 +286,30 @@ A precedência dos operadores em Dart segue uma hierarquia definida, semelhante 
 
 ---
 ### **Compilador**
-Dart pode ser compilado de duas formas:
+Dart pode ser compilado de duas principais formas:
 
-- **JIT (Just-In-Time):** Usado para desenvolvimento, permitindo execução rápida sem compilação completa.
+- **JIT (Just-In-Time):** <br>
+- Usado para desenvolvimento, permitindo execução rápida sem compilação completa.
+- O código Dart é compilado para um bytecode intermediário, que é interpretado pela Dart Virtual Machine (Dart VM).
+- Permite depuração rápida, pois as mudanças no código-fonte podem ser aplicadas imediatamente sem necessidade de recompilar tudo.
 ```linux
     dart run <arquivo>.dart
 ```
-- **AOT (Ahead-Of-Time):** Usado para compilar aplicativos em código nativo, melhorando a performance.
+- **AOT (Ahead-Of-Time):** <br>
+- Usado para compilar aplicativos em código nativo, melhorando a performance.
+- O código Dart é compilado diretamente para código de máquina nativo.
+- Gera binários otimizados, reduzindo o tempo de inicialização e melhorando o desempenho.
 ```linux
    dart compile exe <arquivo>.dart
+   ./teste.exe
+```
+
+- **DART2JS (Dart-To_JavaScript):** <br>
+- Quando o alvo é a web, Dart é transpilado para JavaScript usando dart2js.
+- O código resultante pode ser executado em navegadores sem necessidade de uma VM Dart.
+
+```linux
+   dart compile js main.dart -o main.js
    ./teste.exe
 ```
 
@@ -258,7 +338,8 @@ String texto = numero.toString();
 ```
 ---
 ### **Classes, Herança, Polimorfismo e Abstração**
-Dart segue o paradigma de orientação a objetos:
+- Multiparadigma: Dart suporta Programação Orientada a Objetos (POO), Programação Funcional e Programação Reativa.
+- Baseada em Classes: Segue o modelo tradicional de classes e objetos, semelhante a Java e C#.
 ```dart
 class Animal {
   void fazerSom() {
@@ -297,10 +378,7 @@ bool resultado = false && funcaoPesada(); // funcaoPesada() não será executada
 
 ---
 ### **Efeitos Colaterais**
-Funções puras evitam efeitos colaterais:
-```dart
-int soma(int a, int b) => a + b; // Sem alterações externas
-```
+Em Dart, efeitos colaterais (side effects) ocorrem quando uma função ou método modifica algo fora do seu escopo, como variáveis globais, estados de objetos ou operações de E/S:
 
 ---
 
